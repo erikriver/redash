@@ -1,5 +1,6 @@
 from flask import jsonify
 from flask_login import login_required
+from flask_cors import CORS
 
 from redash.handlers.api import api
 from redash.handlers.base import routes
@@ -31,7 +32,9 @@ def init_app(app):
         admin,
         setup,
         organization,
+        importer,
     )
-
+    
     app.register_blueprint(routes)
+    CORS(app)
     api.init_app(app)
